@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+}
+#images-container {
+  background-image: url(./img2.jpg);
+  background: no-repeat center center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 657px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+#buttons {
+  display: flex;
+  width: -webkit-fill-available;
+  justify-content: space-between;
+}
+
+#previous-img,
+#next-img {
+  cursor: pointer;
+}
+
+#previous-img:hover,
+#next-img:hover {
+  transform: scale(0.9);
+}
