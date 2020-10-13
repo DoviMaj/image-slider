@@ -18,8 +18,7 @@ body {
 
 #buttons {
   display: flex;
-  justify-content: space-between;
-  position: absolute;
+  justify-content: center;
   width: inherit;
 }
 
@@ -41,6 +40,7 @@ body {
 #marker-container {
   display: flex;
   justify-content: center;
+  align-self: center;
 }
 
 .marker {
@@ -50,6 +50,7 @@ body {
   margin: 10px;
   border-radius: 10px;
   cursor: pointer;
+  height: fit-content;
 }
 
 #active-marker {
@@ -65,21 +66,25 @@ body {
   }
 }
 
-@media all and (max-width: 425px) {
-  .slider-img {
-    height: 300px;
-  }
-}
-
-@media all and (min-width: 425px) {
+@media all and (min-width: 200px) {
   .slider-img {
     height: 400px;
+  }
+  #previous-img,
+  #next-img {
+    width: 50px;
+    height: 50px;
   }
 }
 
 @media all and (min-width: 800px) {
   .slider-img {
     height: 550px;
+  }
+  #previous-img,
+  #next-img {
+    width: 60px;
+    height: 60px;
   }
 }
 
