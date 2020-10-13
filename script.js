@@ -1,31 +1,43 @@
+let current = 0;
+
 const nextImage = () => {
-  const current = document.getElementById("images-container");
-  let url = Number(current.className);
-  console.log(url);
-  if (url == 4) {
-    url = -1;
+  const images = document.querySelectorAll(".slider-img");
+  const markers = document.querySelectorAll(".marker");
+  if (current == 4) {
+    current = -1;
+    images[4].classList.add("hide");
+    images[0].classList.remove("hide");
+
+    markers[4].id = "";
+    markers[0].id = "active-marker";
+  } else {
+    images[current].classList.add("hide");
+    images[current + 1].classList.remove("hide");
+
+    markers[current].id = "";
+    markers[current + 1].id = "active-marker";
   }
-  current.style.backgroundImage = `url(./img${url + 1}.jpg)`;
-  current.className = url += 1;
-};
-
-const timer = setInterval(function () {
-  nextImage();
-}, 5000);
-
-const clearTimer = () => {
-  clearInterval(timer);
+  current += 1;
 };
 
 const previousImage = () => {
-  const current = document.getElementById("images-container");
-  let url = Number(current.className);
-  console.log(url);
-  if (url == 0) {
-    url = 5;
+  const images = document.querySelectorAll(".slider-img");
+  const markers = document.querySelectorAll(".marker");
+  if (current == 0) {
+    current = 4;
+    images[0].classList.add("hide");
+    images[4].classList.remove("hide");
+
+    markers[0].id = "";
+    markers[4].id = "active-marker";
+  } else {
+    images[current].classList.add("hide");
+    images[current - 1].classList.remove("hide");
+
+    markers[current].id = "";
+    markers[current - 1].id = "active-marker";
   }
-  current.style.backgroundImage = `url(./img${url - 1}.jpg)`;
-  current.className = url -= 1;
+  current -= 1;
 };
 
 const previousImgEvent = () => {
@@ -42,7 +54,41 @@ const nextImgEvent = () => {
   });
 };
 
-// remove to start timer
-//clearTimer();
+const markerEvent = () => {
+  const markers = document.querySelectorAll(".marker");
+  markers.forEach((m) => {
+    m.addEventListener("click", (evt) => {
+      changeCurrentImage(evt.target.dataset.key);
+    });
+  });
+};
+
+const changeCurrentImage = (element) => {
+  const images = document.querySelectorAll(".slider-img");
+  const markers = document.querySelectorAll(".marker");
+  current = Number(element);
+  images[current].classList.remove("hide");
+  markers[current].id = "active-marker";
+  images.forEach((img, index) => {
+    if (!img.classList.contains("hide") && index !== current) {
+      img.classList.add("hide");
+    }
+  });
+  markers.forEach((m) => {
+    if (m.dataset.key !== element) {
+      m.id = "";
+    }
+  });
+};
+
+const timer = setInterval(function () {
+  nextImage();
+}, 7000);
+
+const clearTimer = () => {
+  clearInterval(timer);
+};
+
 previousImgEvent();
 nextImgEvent();
+markerEvent();

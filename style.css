@@ -1,29 +1,90 @@
 body {
   margin: 0;
 }
+
 #images-container {
-  background-image: url(./img2.jpg);
-  background: no-repeat center center fixed;
-  background-size: cover;
-  width: 100%;
-  height: 657px;
-  margin: auto;
+  width: -webkit-fill-available;
+  height: auto;
   display: flex;
   align-items: center;
 }
 
+.slider-img {
+  width: -webkit-fill-available;
+  height: 612px;
+  position: relative;
+  margin: auto;
+}
+
 #buttons {
   display: flex;
-  width: -webkit-fill-available;
   justify-content: space-between;
+  position: absolute;
+  width: inherit;
 }
 
 #previous-img,
 #next-img {
   cursor: pointer;
+  z-index: 1;
 }
 
 #previous-img:hover,
 #next-img:hover {
   transform: scale(0.9);
+}
+
+.hide {
+  display: none;
+}
+
+#marker-container {
+  display: flex;
+  justify-content: center;
+}
+
+.marker {
+  list-style: none;
+  background: #8bb7f0;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#active-marker {
+  background: antiquewhite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media all and (max-width: 425px) {
+  .slider-img {
+    height: 300px;
+  }
+}
+
+@media all and (min-width: 425px) {
+  .slider-img {
+    height: 400px;
+  }
+}
+
+@media all and (min-width: 800px) {
+  .slider-img {
+    height: 550px;
+  }
+}
+
+@media all and (min-width: 1100px) {
+  .slider-img {
+    height: 600px;
+  }
 }
